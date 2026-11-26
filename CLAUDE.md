@@ -10,7 +10,11 @@
 
 ## 公開
 - URL: https://zero-base-sendai.web.app （Firebaseプロジェクト: `zero-base-sendai`）
-- 自動公開（GitHub Actions）は設定していない（オーナーの希望）。公開はオーナーがMacのターミナルで行う
+- 自動公開（GitHub Actions）: `.github/workflows/deploy.yml` を追加済み。`main` の `site/` が変わると本番に公開する
+  - **2026-11-26時点で未完成**：GitHubのシークレット `FIREBASE_SERVICE_ACCOUNT_ZERO_BASE_SENDAI` がまだ登録されていない
+  - 登録方法：オーナーがMacで、下の公開コマンドの最後を `firebase init hosting:github` に置き換えて実行する（一時フォルダで実行するので `firebase.json` が上書きされても問題ない）。リポジトリは `ssassaki1204-lgtm/zerobase-sendai-site`、build script は N、PR merge 時の自動デプロイは N（ワークフローは自前のものを使う）
+  - 登録後、Actions の手動実行（workflow_dispatch）で一度試し、成功を確認したら、この項目を「設定済み」に書き換える
+  - シークレットが入るまでは、公開はオーナーがMacのターミナルで行う
 - 編集の流れ：このリポジトリの `main` を編集して push する → オーナーに次の「公開コマンド」を案内する
 - 公開コマンド（オーナーのMacで、どこからでも実行できる。GitHubから最新の `main` を取ってきて公開する）:
   ```
