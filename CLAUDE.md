@@ -10,7 +10,14 @@
 
 ## 公開
 - URL: https://zero-base-sendai.web.app （Firebaseプロジェクト: `zero-base-sendai`）
-- 公開コマンド（`site/` で実行）: `firebase deploy --only hosting --project zero-base-sendai`
+- 自動公開（GitHub Actions）は設定していない（オーナーの希望）。公開はオーナーがMacのターミナルで行う
+- 編集の流れ：このリポジトリの `main` を編集して push する → オーナーに次の「公開コマンド」を案内する
+- 公開コマンド（オーナーのMacで、どこからでも実行できる。GitHubから最新の `main` を取ってきて公開する）:
+  ```
+  cd /tmp && rm -rf zerobase-sendai-site-main zb.zip && curl -fsSL -o zb.zip https://github.com/ssassaki1204-lgtm/zerobase-sendai-site/archive/refs/heads/main.zip && unzip -q zb.zip && cd zerobase-sendai-site-main/site && firebase deploy --only hosting --project zero-base-sendai
+  ```
+  - このコマンドはリポジトリが Public であることが前提。Private にした場合は使えない
+  - オーナーのMacには firebase-tools がインストール済みで、ログインも済んでいる（2026-11-26時点）
 - `firebase init` は実行しないこと。`firebase.json` が上書きされる
 - HTMLはブラウザに1時間キャッシュされる。公開直後の確認は `?1` を付けたURLで行う
 
