@@ -318,6 +318,40 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .rows b{font:italic 800 1.8rem/1 var(--f-cd);font-variant-numeric:tabular-nums}
 .rows small{grid-column:1/-1;color:var(--bone-muted);font-size:.74rem}
 .fine{margin-top:14px;font-size:.74rem;color:var(--bone-muted);display:grid;gap:.15rem}
+/* オープンキャンペーン */
+.cp{--red:#e3191f;margin-top:44px;background:var(--bone-ink);color:var(--paper);padding:clamp(18px,3vw,34px);display:grid;gap:clamp(14px,2vw,20px)}
+.cp-head{text-align:center;display:grid;gap:.2em;padding-block:.4em}
+.cp-head .en{font:italic 800 clamp(.9rem,2.4vw,1.25rem)/1 var(--f-cd);letter-spacing:.06em;color:var(--paper)}
+.cp-head h3{display:flex;align-items:center;justify-content:center;gap:.5em;font-size:clamp(1.9rem,6.4vw,3.6rem);font-weight:900;line-height:1.15;letter-spacing:.02em}
+.cp-head h3::before,.cp-head h3::after{content:"";flex:none;width:.28em;height:1em;background:var(--accent);transform:skewX(-18deg)}
+.cp-box{border:3px solid var(--accent);background:var(--bone-card);color:var(--bone-ink)}
+.cp-bar{display:flex;flex-wrap:wrap;align-items:center;gap:.4em .7em;background:var(--accent);color:var(--accent-ink);padding:.45em .8em;font-size:clamp(1.3rem,3.6vw,2.1rem);font-weight:900;line-height:1.2}
+.cp-bar .no{display:inline-grid;place-items:center;width:1.4em;height:1.4em;border:.12em solid currentColor;border-radius:50%;font:italic 800 .78em/1 var(--f-cd)}
+.cp-bar .badge{margin-left:auto;background:var(--red);color:#fff;border-radius:999px;padding:.2em .85em;font-size:.62em;letter-spacing:.04em}
+.cp>*,.cp-plans>*{min-width:0}
+.cp-row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:12px 20px;padding:clamp(14px,2.4vw,24px) clamp(14px,2.6vw,28px)}
+.cp-row .what{display:grid;gap:.5em;justify-items:start}
+.cp-row .what b{font-size:clamp(1.05rem,2.6vw,1.5rem);font-weight:900;line-height:1.3}
+.cp-row .what b.lg{font-size:clamp(1.7rem,5vw,2.8rem)}
+.cp-row .what b{word-break:keep-all}
+.cp-pill{display:inline-block;background:var(--accent);color:var(--accent-ink);border-radius:999px;padding:.25em 1em;font-size:clamp(.82rem,1.8vw,1rem);font-weight:900}
+.cp-val{display:grid;justify-items:end;text-align:right;padding-left:clamp(12px,2.4vw,24px);border-left:3px solid var(--bone-ink)}
+.cp-was{font-size:clamp(.82rem,1.8vw,1rem);font-weight:700;color:var(--bone-muted);white-space:nowrap}
+.cp-was s{font:italic 800 1.5em/1 var(--f-cd);color:var(--bone-ink);text-decoration-color:var(--red);text-decoration-thickness:.12em;margin-left:.2em}
+.cp-now{font:italic 800 clamp(3rem,10vw,6.2rem)/.9 var(--f-cd);font-variant-numeric:tabular-nums;white-space:nowrap}
+.cp-now small{font:900 .36em var(--f-ja);margin-left:.1em}
+.cp-mon{background:var(--bone-ink);padding:clamp(14px,2.4vw,22px) clamp(10px,2vw,20px) clamp(10px,2vw,20px)}
+.cp-mon>h4{text-align:center;color:var(--accent);font-size:clamp(1.5rem,4.6vw,2.6rem);font-weight:900;line-height:1.2;margin-bottom:clamp(12px,2vw,18px)}
+.cp-plans{display:grid;gap:10px}
+@media(min-width:640px){.cp-plans{grid-template-columns:1fr 1fr}}
+.cp-plan{background:var(--bone-card);color:var(--bone-ink);border:3px solid #fff;outline:2px solid var(--bone-ink);display:grid;justify-items:center;gap:.45em;padding:clamp(14px,2.4vw,22px) 12px;text-align:center}
+.cp-plan .cp-was{color:var(--bone-muted)}
+.cp-plan .cp-now{font-size:clamp(2.8rem,8vw,4.4rem)}
+.cp-plan .cp-pill{font-size:clamp(.92rem,2vw,1.1rem)}
+.cp-foot{text-align:center;font-size:clamp(1rem,2.6vw,1.45rem);font-weight:900;line-height:1.5;padding-top:.2em}
+.std-h{margin-top:clamp(40px,6vw,64px);font-size:1.15rem;font-weight:700}
+.std-h+.subplans{margin-top:14px}
+@media(max-width:520px){.cp-head h3{font-size:min(1.55rem,7vw);gap:.35em}.cp-bar{font-size:1.15rem}.cp-mon>h4{font-size:1.3rem}.cp-plan .cp-now{font-size:2.6rem}.cp-foot{font-size:.95rem}.cp-row{gap:10px 12px}.cp-row .what b{font-size:1rem}.cp-row .what b.lg{font-size:1.6rem}.cp-pill{font-size:.78rem;padding:.25em .8em}.cp-val{padding-left:12px}.cp-now{font-size:2.9rem}.cp-was{font-size:.74rem}.cp-bar .badge{margin-left:0}}
 .fine li::before{content:"※ "}
 
 /* hours & access */
@@ -686,23 +720,37 @@ html.lock{overflow:hidden}
     <p class="eyebrow" data-rv>Price</p>
     <h2 class="h2 split">料金プラン</h2>
     <div id="priceFull">
-      <div class="plans">
-        <article class="card-l plan" data-rv style="--i:0">
-          <span class="en">Monthly 4</span><h3>月4回</h3>
-          <p class="price">¥14,000<small>/月</small></p>
-          <dl><div><dt>1回あたり</dt><dd>¥3,500</dd></div><div><dt>有効期限</dt><dd>1か月</dd></div></dl>
-        </article>
-        <article class="card-l plan" data-rv style="--i:1">
-          <span class="en">Monthly 8</span><h3>月8回</h3>
-          <p class="price">¥22,000<small>/月</small></p>
-          <dl><div><dt>1回あたり</dt><dd>¥2,750</dd></div><div><dt>有効期限</dt><dd>1か月</dd></div></dl>
-        </article>
-        <article class="card-l plan" data-rv style="--i:2">
-          <span class="en">Visitor</span><h3>ビジター</h3>
-          <p class="price">¥4,400<small>/1回</small></p>
-          <dl><div><dt>回数</dt><dd>1回</dd></div><div><dt>お支払い</dt><dd>1回ごと</dd></div></dl>
-        </article>
+      <!-- オープンキャンペーン（料金はここを直す。打ち消し線の「通常」料金は <s>〜</s> の中） -->
+      <div class="cp" data-rv>
+        <div class="cp-head"><span class="en">ZERO BASE SENDAI</span><h3>オープンキャンペーン</h3></div>
+
+        <div class="cp-box">
+          <p class="cp-bar"><span class="no">1</span>初回体験60分</p>
+          <div class="cp-row">
+            <div class="what"><b>ビジター<wbr>通常料金</b><span class="cp-pill">初回体験のみ</span></div>
+            <div class="cp-val"><span class="cp-was"><s>4,400</s>円</span><span class="cp-now">2,000<small>円</small></span></div>
+          </div>
+        </div>
+
+        <div class="cp-box">
+          <p class="cp-bar"><span class="no">2</span>入会キャンペーン<span class="badge">先着30名限定</span></p>
+          <div class="cp-row">
+            <div class="what"><b class="lg">入会金</b></div>
+            <div class="cp-val"><span class="cp-was">通常 <s>5,500</s>円</span><span class="cp-now">0<small>円</small></span></div>
+          </div>
+          <div class="cp-mon">
+            <h4>3か月間の特別月会費</h4>
+            <div class="cp-plans">
+              <div class="cp-plan"><span class="cp-pill">月4回プラン</span><span class="cp-was">通常 <s>14,000</s>円/月</span><span class="cp-now">12,000<small>円/月</small></span><span class="cp-pill">1回あたり 3,000円</span></div>
+              <div class="cp-plan"><span class="cp-pill">月8回プラン</span><span class="cp-was">通常 <s>22,000</s>円/月</span><span class="cp-now">20,000<small>円/月</small></span><span class="cp-pill">1回あたり 2,500円</span></div>
+            </div>
+          </div>
+        </div>
+
+        <p class="cp-foot">オープン日、体験開始日、ご入会の詳細は<br>決まり次第ご案内します</p>
       </div>
+
+      <h3 class="std-h" data-rv>その他の料金</h3>
       <div class="subplans">
         <article class="card-l sub" data-rv>
           <span class="lbl">Ticket</span><h3>回数券</h3>
@@ -715,7 +763,7 @@ html.lock{overflow:hidden}
           <span class="lbl">Option / Fee</span><h3>オプション・入会金</h3>
           <ul class="rows">
             <li><span>自主練し放題</span><b>+¥6,000</b><small>月額プランに追加／最低2か月以上のご契約</small></li>
-            <li><span>入会金</span><b>¥5,500</b><small>ご入会時のみ</small></li>
+            <li><span>入会金</span><b>¥5,500</b><small>ご入会時のみ（オープンキャンペーン中は先着30名まで0円）</small></li>
           </ul>
         </article>
       </div>
