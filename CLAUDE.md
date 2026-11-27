@@ -26,7 +26,7 @@
 - HTMLはブラウザに1時間キャッシュされる。公開直後の確認は `?1` を付けたURLで行う
 
 ## 編集時の注意
-- 同じ情報がページ内の複数箇所にある。変更するときは全箇所をまとめて直す（`EDIT_GUIDE.html`（編集ガイド。Macのunzipが日本語ファイル名で失敗するため英語名にしている） の4章を参照）
+- 同じ情報がページ内の複数箇所にある。変更するときは全箇所をまとめて直す（`EDIT_GUIDE.html` の4章を参照）
   - オープン時期（`12月下旬` / `2026.12`）、公式LINE（`lin.ee/ShvPHxf`）、Instagram（`zero.base.sendai`）、メール（`info@zerobasegym.com`）、住所（`萩野町`）
   - ジム名・住所・オープン時期が変わったら、`<title>`、`description`、`application/ld+json` も直す
 - Googleマップの埋め込みは店舗の cid を使う: `https://www.google.com/maps?cid=5868064482876122627&output=embed`
