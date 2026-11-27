@@ -10,13 +10,14 @@
 
 ## 公開
 - URL: https://zero-base-sendai.web.app （Firebaseプロジェクト: `zero-base-sendai`）
-- 自動公開（GitHub Actions）: `.github/workflows/deploy.yml` を追加済み。`main` の `site/` が変わると本番に公開する
-  - **2026-11-26時点で未完成**：GitHubのシークレット `FIREBASE_SERVICE_ACCOUNT_ZERO_BASE_SENDAI` がまだ登録されていない
-  - 登録方法：オーナーがMacで、下の公開コマンドの最後を `firebase init hosting:github` に置き換えて実行する（一時フォルダで実行するので `firebase.json` が上書きされても問題ない）。リポジトリは `ssassaki1204-lgtm/zerobase-sendai-site`、build script は N、PR merge 時の自動デプロイは N（ワークフローは自前のものを使う）
-  - 登録後、Actions の手動実行（workflow_dispatch）で一度試し、成功を確認したら、この項目を「設定済み」に書き換える
-  - シークレットが入るまでは、公開はオーナーがMacのターミナルで行う
-- 編集の流れ：このリポジトリの `main` を編集して push する → オーナーに次の「公開コマンド」を案内する
-- 公開コマンド（オーナーのMacで、どこからでも実行できる。GitHubから最新の `main` を取ってきて公開する）:
+- **自動公開（GitHub Actions）設定済み**（2026-11-27、初回の手動実行で成功を確認）
+  - `.github/workflows/deploy.yml`：`main` の `site/` が変わると、1〜2分で本番に公開される
+  - 認証はシークレット `FIREBASE_SERVICE_ACCOUNT_ZERO_BASE_SENDAI`（Firebase Hosting 管理者権限のサービスアカウント）
+  - 手動で再公開したいときは REST で dispatch する（このセッション環境では GraphQL が使えないため `gh workflow run` は不可）:
+    `gh api -X POST repos/ssassaki1204-lgtm/zerobase-sendai-site/actions/workflows/deploy.yml/dispatches -f ref=main`
+  - 結果の確認: `gh api repos/ssassaki1204-lgtm/zerobase-sendai-site/actions/runs --jq '.workflow_runs[0]|[.status,.conclusion]'`
+- 編集の流れ：このリポジトリの `main` を編集して push する → Actions の成功を確認する → オーナーに「反映済み」と伝える（オーナーの作業は不要。スマホから依頼できる）
+- 予備の公開コマンド（Actions が使えないときだけ。オーナーのMacで、どこからでも実行できる。GitHubから最新の `main` を取ってきて公開する）:
   ```
   cd /tmp && rm -rf zerobase-sendai-site-main zb.zip && curl -fsSL -o zb.zip https://github.com/ssassaki1204-lgtm/zerobase-sendai-site/archive/refs/heads/main.zip && unzip -q zb.zip && cd zerobase-sendai-site-main/site && firebase deploy --only hosting --project zero-base-sendai
   ```
